@@ -207,9 +207,9 @@ dec64 dec64_atan2(dec64 y, dec64 x) {
         dec64 atan = dec64_atan(dec64_divide(y, x));
         if (x < 0) {
             if (y < 0) {
-                return dec64_subtract(atan, D_HALF_PI);
+                return dec64_subtract(atan, D_PI);
             } else {
-                return dec64_add(atan, D_HALF_PI);
+                return dec64_add(atan, D_PI);
             }
         } else {
             return atan;

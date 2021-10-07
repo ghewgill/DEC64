@@ -219,6 +219,11 @@ static void test_atan(dec64 first, dec64 expected, char * comment) {
     judge_unary(first, expected, actual, "atan", "at", comment);
 }
 
+static void test_atan2(dec64 first, dec64 second, dec64 expected, char * comment) {
+    dec64 actual = dec64_atan2(first, second);
+    judge_binary(first, second, expected, actual, "atan2", "at2", comment);
+}
+
 static void test_cos(dec64 first, dec64 expected, char * comment) {
     dec64 actual = dec64_cos(first);
     judge_unary(first, expected, actual, "cos", "c", comment);
@@ -301,6 +306,18 @@ static void test_all_atan() {
     test_atan(dec64_neg(e), dec64_new(-12182829050172776, -16), "-e");
     test_atan(dec64_neg(pi), dec64_new(-12626272556789117, -16), "-pi");
     test_atan(dec64_neg(ten), dec64_new(-14711276743037346, -16), "-10");
+}
+
+static void test_all_atan2() {
+    test_atan2(zero, one, zero, "0, 1");
+    test_atan2(one, zero, half_pi, "1, 0");
+    test_atan2(zero, negative_one, pi, "0, -1");
+    test_atan2(negative_one, zero, dec64_neg(half_pi), "-1, 0");
+
+    test_atan2(one, one, dec64_divide(half_pi, two), "1, 1");
+    test_atan2(one, negative_one, dec64_add(half_pi, dec64_divide(half_pi, two)), "1, -1");
+    test_atan2(negative_one, negative_one, dec64_subtract(dec64_neg(half_pi), dec64_divide(half_pi, two)), "-1, -1");
+    test_atan2(negative_one, one, dec64_neg(dec64_divide(half_pi, two)), "-1, 1");
 }
 
 static void test_all_cos() {
@@ -432,6 +449,7 @@ static int do_tests(int level_of_detail) {
     test_all_acos();
     test_all_asin();
     test_all_atan();
+    test_all_atan2();
     test_all_cos();
     test_all_exp();
     test_all_factorial();
