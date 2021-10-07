@@ -15,19 +15,19 @@ No warranty.
 extern "C" {
 #endif
 
-#define DEC64_ZERO          (0x000LL)
-#define DEC64_ONE           (0x100LL)
-#define DEC64_TWO           (0x200LL)
-#define DEC64_NEGATIVE_ONE  (0xFFFFFFFFFFFFFF00LL)
-
-#define DEC64_NULL          (0x8000000000000080LL)
-#define DEC64_TRUE          (0x8000000000000380LL)
-#define DEC64_FALSE         (0x8000000000000280LL)
-#define DEC64_NAN           DEC64_NULL 
-
 typedef long long int64;
 typedef unsigned long long uint64;
 typedef int64 dec64;
+
+#define DEC64_ZERO          (dec64)(0x000LL)
+#define DEC64_ONE           (dec64)(0x100LL)
+#define DEC64_TWO           (dec64)(0x200LL)
+#define DEC64_NEGATIVE_ONE  (dec64)(0xFFFFFFFFFFFFFF00LL)
+
+#define DEC64_NULL          (dec64)(0x8000000000000080LL)
+#define DEC64_TRUE          (dec64)(0x8000000000000380LL)
+#define DEC64_FALSE         (dec64)(0x8000000000000280LL)
+#define DEC64_NAN           DEC64_NULL 
 
 extern int64 dec64_coefficient(dec64 number)                /*   coefficient */;
 extern int64 dec64_exponent(dec64 number)                   /*      exponent */;
