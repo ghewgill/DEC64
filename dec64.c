@@ -29,6 +29,8 @@ SOFTWARE.
 #include <math.h>
 #include <stdio.h>
 
+#include "dec64_port.h"
+
 #undef abs
 #undef min
 #undef max

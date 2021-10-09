@@ -601,7 +601,12 @@ typedef struct dec64_dump_state
     char bufs[NBUFS][100];
 } dec64_dump_state;
 
-__thread dec64_dump_state g_dump_state;
+#ifdef _MSC_VER
+__declspec(thread)
+#else
+__thread
+#endif
+dec64_dump_state g_dump_state;
 
 dec64_string_state dec64_default_state(void)
 {
